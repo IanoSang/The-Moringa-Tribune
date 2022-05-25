@@ -1,0 +1,32 @@
+{%extends 'all-news/base.html'%}
+
+{% block content %}
+{{block.super}}
+<!-- Looping through news   -->
+<div class="container">
+
+  <div class="col-6">
+     {% for news_item in news %}
+  <div class="card text-center">
+  <div class="card-header">
+    {{ news_item.title }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{news_item.tags}}</h5>
+    <p class="card-text">{{news_item.post}}</p>
+    <a href="#" class="btn btn-primary">{{news_item.editor}}</a>
+  </div>
+  <div class="card-footer text-muted">
+    {{news_item.pub_date}}
+  </div>
+</div>
+
+  {% empty %}
+  <div class="row">
+    <h2 class="text-center">There No News Items</h2>
+  </div>
+  {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
