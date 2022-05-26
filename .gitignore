@@ -2,3 +2,4 @@ virtual/
 .idea/
 *.pyc
 pycache/
+.env/
