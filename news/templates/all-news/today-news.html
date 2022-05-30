@@ -8,11 +8,15 @@
   <div class="col-6">
      {% for news_item in news %}
   <div class="card text-center">
+    <!--Display news Article images  -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <img src="{{news_item.article_image.url}}" class="img-responsive" alt="Image">
+    </div>
   <div class="card-header">
     {{ news_item.title }}
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{news_item.tags}}</h5>
+    <h5 class="card-title">{{ news_item.tags }}</h5>
     <p class="card-text">{{news_item.post}}</p>
     <a href="#" class="btn btn-primary">{{news_item.editor}}</a>
   </div>

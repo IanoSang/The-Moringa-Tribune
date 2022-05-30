@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 import datetime as dt
 from .models import Article
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -28,21 +29,22 @@ def past_days_news(request, past_date):
 
 
 def search_results(request):
-
     if 'article' in request.GET and request.GET["article"]:
         search_term = request.GET.get("article")
         searched_articles = Article.search_by_title(search_term)
         message = f"{search_term}"
 
-        return render(request, 'all-news/search.html',{"message":message,"articles": searched_articles})
+        return render(request, 'all-news/search.html', {"message": message, "articles": searched_articles})
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'all-news/search.html',{"message":message})
+        return render(request, 'all-news/search.html', {"message": message})
 
-def article(request,article_id):
+
+@login_required(login_url='/accounts/login/')
+def article(request, article_id):
     try:
-        article = Article.objects.get(id = article_id)
+        article = Article.objects.get(id=article_id)
     except DoesNotExist:
         raise Http404()
-    return render(request,"all-news/article.html", {"article":article})
+    return render(request, "all-news/article.html", {"article": article})
