@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # OWN
     'news.apps.NewsConfig',
     'bootstrap3',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -157,3 +158,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
+LOGIN_URL='/login'
